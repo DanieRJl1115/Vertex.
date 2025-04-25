@@ -1,0 +1,2595 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMENTARIO
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> sentencia_sent
+Rule 2     sentencia_sent -> sent_linea P_COMA sentencia_sent
+Rule 3     sentencia_sent -> sentencia sentencia_sent
+Rule 4     sentencia_sent -> <empty>
+Rule 5     sent_linea -> declarar_var
+Rule 6     sent_linea -> declarar_cons
+Rule 7     sent_linea -> asignacion
+Rule 8     sent_linea -> inst_fun
+Rule 9     sent_linea -> metodo
+Rule 10    sentencia -> sent_if
+Rule 11    sentencia -> sent_for
+Rule 12    sentencia -> sent_while
+Rule 13    sentencia -> sent_fun
+Rule 14    sentencia -> sent_try
+Rule 15    declarar_var -> VAR IDENTIFICADORES
+Rule 16    declarar_var -> VAR IDENTIFICADORES OP_ASIGNACION valor
+Rule 17    valor -> expresion
+Rule 18    valor -> estructura_datos
+Rule 19    valor -> metodo
+Rule 20    valor -> IDENTIFICADORES
+Rule 21    expresion -> termino exp_e
+Rule 22    termino -> factor term_ext
+Rule 23    factor -> selec_dato
+Rule 24    factor -> A_PARENTESIS expresion C_PARENTESIS
+Rule 25    selec_dato -> IDENTIFICADORES
+Rule 26    selec_dato -> LITERALES
+Rule 27    term_ext -> OP_MULTIPLICATIVO factor term_ext
+Rule 28    term_ext -> <empty>
+Rule 29    exp_e -> OP_ARITMETICO termino exp_e
+Rule 30    exp_e -> <empty>
+Rule 31    estructura_datos -> lista
+Rule 32    estructura_datos -> tupla
+Rule 33    estructura_datos -> diccionario
+Rule 34    lista -> A_CORCHETE dato dato_extra C_CORCHETE
+Rule 35    lista -> A_CORCHETE C_CORCHETE
+Rule 36    tupla -> A_PARENTESIS dato dato_extra C_PARENTESIS
+Rule 37    dato_extra -> COMA dato dato_extra
+Rule 38    dato_extra -> <empty>
+Rule 39    diccionario -> A_LLAVE LITERALES DOS_P dato element_ext C_LLAVE
+Rule 40    diccionario -> A_LLAVE C_LLAVE
+Rule 41    element_ext -> COMA LITERALES DOS_P dato element_ext
+Rule 42    element_ext -> <empty>
+Rule 43    dato -> IDENTIFICADORES
+Rule 44    dato -> LITERALES
+Rule 45    dato -> expresion
+Rule 46    asignacion -> IDENTIFICADORES OP_ASIGNACION valor
+Rule 47    declarar_cons -> CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+Rule 48    inst_fun -> IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+Rule 49    atributo -> IDENTIFICADORES atributo_dos
+Rule 50    atributo -> LITERALES atributo_dos
+Rule 51    atributo -> <empty>
+Rule 52    atributo_dos -> COMA IDENTIFICADORES atributo_dos
+Rule 53    atributo_dos -> COMA LITERALES atributo_dos
+Rule 54    atributo_dos -> <empty>
+Rule 55    metodo -> PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+Rule 56    metodo -> METODO A_PARENTESIS atributo C_PARENTESIS
+Rule 57    sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+Rule 58    exp_comparacion -> dato OP_RELACIONAL dato exp_ext
+Rule 59    exp_comparacion -> LITERALES
+Rule 60    exp_ext -> OP_LOGICO exp_comparacion
+Rule 61    exp_ext -> <empty>
+Rule 62    sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE
+Rule 63    sent_else -> <empty>
+Rule 64    sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+Rule 65    expresion_comp -> IDENTIFICADORES OP_RELACIONAL dato
+Rule 66    incremento -> op_incremento_simple
+Rule 67    incremento -> asignacion_expr
+Rule 68    op_incremento_simple -> IDENTIFICADORES OP_UNITARIO
+Rule 69    asignacion_expr -> IDENTIFICADORES OP_ASIGNACION expresion
+Rule 70    sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+Rule 71    sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+Rule 72    sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+Rule 73    sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+Terminals, with rules where they appear
+
+A_CORCHETE           : 34 35
+A_LLAVE              : 39 40 57 62 64 70 71 72 73 73
+A_PARENTESIS         : 24 36 48 55 56 57 64 70 71 72
+COMA                 : 37 41 52 53
+COMENTARIO           : 
+CONS                 : 47
+C_CORCHETE           : 34 35
+C_LLAVE              : 39 40 57 62 64 70 71 72 73 73
+C_PARENTESIS         : 24 36 48 55 56 57 64 70 71 72
+DOS_P                : 39 41
+ENTONCES             : 62
+EXCEPTO              : 73
+FUNCION              : 71 72
+IDENTIFICADORES      : 15 16 20 25 43 46 47 48 49 52 65 68 69
+INTENTAR             : 73
+LITERALES            : 26 39 41 44 47 50 53 59
+METODO               : 55 56
+MIENTRAS             : 70
+OP_ARITMETICO        : 29
+OP_ASIGNACION        : 16 46 47 69
+OP_LOGICO            : 60
+OP_MULTIPLICATIVO    : 27
+OP_RELACIONAL        : 58 65
+OP_UNITARIO          : 68
+PARA                 : 64
+PUNTO                : 55
+P_COMA               : 2 64 64
+REGRESAR             : 71
+SI                   : 57
+VAR                  : 15 16
+error                : 
+
+Nonterminals, with rules where they appear
+
+asignacion           : 7
+asignacion_expr      : 67
+atributo             : 48 55 56 71 72
+atributo_dos         : 49 50 52 53
+dato                 : 34 36 37 39 41 58 58 65
+dato_extra           : 34 36 37
+declarar_cons        : 6
+declarar_var         : 5 64
+diccionario          : 33
+element_ext          : 39 41
+estructura_datos     : 18
+exp_comparacion      : 57 60 70
+exp_e                : 21 29
+exp_ext              : 58
+expresion            : 17 24 45 69
+expresion_comp       : 64
+factor               : 22 27
+incremento           : 64
+inst_fun             : 8
+lista                : 31
+metodo               : 9 19
+op_incremento_simple : 66
+programa             : 0
+selec_dato           : 23
+sent_else            : 57
+sent_for             : 11
+sent_fun             : 13
+sent_if              : 10
+sent_linea           : 2
+sent_try             : 14
+sent_while           : 12
+sentencia            : 3
+sentencia_sent       : 1 2 3 57 62 64 70 71 72 73 73
+term_ext             : 22 27
+termino              : 21 29
+tupla                : 32
+valor                : 16 46 71
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . sentencia_sent
+    (2) sentencia_sent -> . sent_linea P_COMA sentencia_sent
+    (3) sentencia_sent -> . sentencia sentencia_sent
+    (4) sentencia_sent -> .
+    (5) sent_linea -> . declarar_var
+    (6) sent_linea -> . declarar_cons
+    (7) sent_linea -> . asignacion
+    (8) sent_linea -> . inst_fun
+    (9) sent_linea -> . metodo
+    (10) sentencia -> . sent_if
+    (11) sentencia -> . sent_for
+    (12) sentencia -> . sent_while
+    (13) sentencia -> . sent_fun
+    (14) sentencia -> . sent_try
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+    (47) declarar_cons -> . CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+    (46) asignacion -> . IDENTIFICADORES OP_ASIGNACION valor
+    (48) inst_fun -> . IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (57) sent_if -> . SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (64) sent_for -> . PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (70) sent_while -> . MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (71) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (73) sent_try -> . INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    $end            reduce using rule 4 (sentencia_sent -> .)
+    VAR             shift and go to state 15
+    CONS            shift and go to state 17
+    IDENTIFICADORES shift and go to state 16
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    SI              shift and go to state 20
+    PARA            shift and go to state 21
+    MIENTRAS        shift and go to state 22
+    FUNCION         shift and go to state 23
+    INTENTAR        shift and go to state 24
+
+    programa                       shift and go to state 1
+    sentencia_sent                 shift and go to state 2
+    sent_linea                     shift and go to state 3
+    sentencia                      shift and go to state 4
+    declarar_var                   shift and go to state 5
+    declarar_cons                  shift and go to state 6
+    asignacion                     shift and go to state 7
+    inst_fun                       shift and go to state 8
+    metodo                         shift and go to state 9
+    sent_if                        shift and go to state 10
+    sent_for                       shift and go to state 11
+    sent_while                     shift and go to state 12
+    sent_fun                       shift and go to state 13
+    sent_try                       shift and go to state 14
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> sentencia_sent .
+
+    $end            reduce using rule 1 (programa -> sentencia_sent .)
+
+
+state 3
+
+    (2) sentencia_sent -> sent_linea . P_COMA sentencia_sent
+
+    P_COMA          shift and go to state 25
+
+
+state 4
+
+    (3) sentencia_sent -> sentencia . sentencia_sent
+    (2) sentencia_sent -> . sent_linea P_COMA sentencia_sent
+    (3) sentencia_sent -> . sentencia sentencia_sent
+    (4) sentencia_sent -> .
+    (5) sent_linea -> . declarar_var
+    (6) sent_linea -> . declarar_cons
+    (7) sent_linea -> . asignacion
+    (8) sent_linea -> . inst_fun
+    (9) sent_linea -> . metodo
+    (10) sentencia -> . sent_if
+    (11) sentencia -> . sent_for
+    (12) sentencia -> . sent_while
+    (13) sentencia -> . sent_fun
+    (14) sentencia -> . sent_try
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+    (47) declarar_cons -> . CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+    (46) asignacion -> . IDENTIFICADORES OP_ASIGNACION valor
+    (48) inst_fun -> . IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (57) sent_if -> . SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (64) sent_for -> . PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (70) sent_while -> . MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (71) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (73) sent_try -> . INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    $end            reduce using rule 4 (sentencia_sent -> .)
+    C_LLAVE         reduce using rule 4 (sentencia_sent -> .)
+    REGRESAR        reduce using rule 4 (sentencia_sent -> .)
+    VAR             shift and go to state 15
+    CONS            shift and go to state 17
+    IDENTIFICADORES shift and go to state 16
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    SI              shift and go to state 20
+    PARA            shift and go to state 21
+    MIENTRAS        shift and go to state 22
+    FUNCION         shift and go to state 23
+    INTENTAR        shift and go to state 24
+
+    sentencia                      shift and go to state 4
+    sentencia_sent                 shift and go to state 26
+    sent_linea                     shift and go to state 3
+    declarar_var                   shift and go to state 5
+    declarar_cons                  shift and go to state 6
+    asignacion                     shift and go to state 7
+    inst_fun                       shift and go to state 8
+    metodo                         shift and go to state 9
+    sent_if                        shift and go to state 10
+    sent_for                       shift and go to state 11
+    sent_while                     shift and go to state 12
+    sent_fun                       shift and go to state 13
+    sent_try                       shift and go to state 14
+
+state 5
+
+    (5) sent_linea -> declarar_var .
+
+    P_COMA          reduce using rule 5 (sent_linea -> declarar_var .)
+
+
+state 6
+
+    (6) sent_linea -> declarar_cons .
+
+    P_COMA          reduce using rule 6 (sent_linea -> declarar_cons .)
+
+
+state 7
+
+    (7) sent_linea -> asignacion .
+
+    P_COMA          reduce using rule 7 (sent_linea -> asignacion .)
+
+
+state 8
+
+    (8) sent_linea -> inst_fun .
+
+    P_COMA          reduce using rule 8 (sent_linea -> inst_fun .)
+
+
+state 9
+
+    (9) sent_linea -> metodo .
+
+    P_COMA          reduce using rule 9 (sent_linea -> metodo .)
+
+
+state 10
+
+    (10) sentencia -> sent_if .
+
+    VAR             reduce using rule 10 (sentencia -> sent_if .)
+    CONS            reduce using rule 10 (sentencia -> sent_if .)
+    IDENTIFICADORES reduce using rule 10 (sentencia -> sent_if .)
+    PUNTO           reduce using rule 10 (sentencia -> sent_if .)
+    METODO          reduce using rule 10 (sentencia -> sent_if .)
+    SI              reduce using rule 10 (sentencia -> sent_if .)
+    PARA            reduce using rule 10 (sentencia -> sent_if .)
+    MIENTRAS        reduce using rule 10 (sentencia -> sent_if .)
+    FUNCION         reduce using rule 10 (sentencia -> sent_if .)
+    INTENTAR        reduce using rule 10 (sentencia -> sent_if .)
+    $end            reduce using rule 10 (sentencia -> sent_if .)
+    C_LLAVE         reduce using rule 10 (sentencia -> sent_if .)
+    REGRESAR        reduce using rule 10 (sentencia -> sent_if .)
+
+
+state 11
+
+    (11) sentencia -> sent_for .
+
+    VAR             reduce using rule 11 (sentencia -> sent_for .)
+    CONS            reduce using rule 11 (sentencia -> sent_for .)
+    IDENTIFICADORES reduce using rule 11 (sentencia -> sent_for .)
+    PUNTO           reduce using rule 11 (sentencia -> sent_for .)
+    METODO          reduce using rule 11 (sentencia -> sent_for .)
+    SI              reduce using rule 11 (sentencia -> sent_for .)
+    PARA            reduce using rule 11 (sentencia -> sent_for .)
+    MIENTRAS        reduce using rule 11 (sentencia -> sent_for .)
+    FUNCION         reduce using rule 11 (sentencia -> sent_for .)
+    INTENTAR        reduce using rule 11 (sentencia -> sent_for .)
+    $end            reduce using rule 11 (sentencia -> sent_for .)
+    C_LLAVE         reduce using rule 11 (sentencia -> sent_for .)
+    REGRESAR        reduce using rule 11 (sentencia -> sent_for .)
+
+
+state 12
+
+    (12) sentencia -> sent_while .
+
+    VAR             reduce using rule 12 (sentencia -> sent_while .)
+    CONS            reduce using rule 12 (sentencia -> sent_while .)
+    IDENTIFICADORES reduce using rule 12 (sentencia -> sent_while .)
+    PUNTO           reduce using rule 12 (sentencia -> sent_while .)
+    METODO          reduce using rule 12 (sentencia -> sent_while .)
+    SI              reduce using rule 12 (sentencia -> sent_while .)
+    PARA            reduce using rule 12 (sentencia -> sent_while .)
+    MIENTRAS        reduce using rule 12 (sentencia -> sent_while .)
+    FUNCION         reduce using rule 12 (sentencia -> sent_while .)
+    INTENTAR        reduce using rule 12 (sentencia -> sent_while .)
+    $end            reduce using rule 12 (sentencia -> sent_while .)
+    C_LLAVE         reduce using rule 12 (sentencia -> sent_while .)
+    REGRESAR        reduce using rule 12 (sentencia -> sent_while .)
+
+
+state 13
+
+    (13) sentencia -> sent_fun .
+
+    VAR             reduce using rule 13 (sentencia -> sent_fun .)
+    CONS            reduce using rule 13 (sentencia -> sent_fun .)
+    IDENTIFICADORES reduce using rule 13 (sentencia -> sent_fun .)
+    PUNTO           reduce using rule 13 (sentencia -> sent_fun .)
+    METODO          reduce using rule 13 (sentencia -> sent_fun .)
+    SI              reduce using rule 13 (sentencia -> sent_fun .)
+    PARA            reduce using rule 13 (sentencia -> sent_fun .)
+    MIENTRAS        reduce using rule 13 (sentencia -> sent_fun .)
+    FUNCION         reduce using rule 13 (sentencia -> sent_fun .)
+    INTENTAR        reduce using rule 13 (sentencia -> sent_fun .)
+    $end            reduce using rule 13 (sentencia -> sent_fun .)
+    C_LLAVE         reduce using rule 13 (sentencia -> sent_fun .)
+    REGRESAR        reduce using rule 13 (sentencia -> sent_fun .)
+
+
+state 14
+
+    (14) sentencia -> sent_try .
+
+    VAR             reduce using rule 14 (sentencia -> sent_try .)
+    CONS            reduce using rule 14 (sentencia -> sent_try .)
+    IDENTIFICADORES reduce using rule 14 (sentencia -> sent_try .)
+    PUNTO           reduce using rule 14 (sentencia -> sent_try .)
+    METODO          reduce using rule 14 (sentencia -> sent_try .)
+    SI              reduce using rule 14 (sentencia -> sent_try .)
+    PARA            reduce using rule 14 (sentencia -> sent_try .)
+    MIENTRAS        reduce using rule 14 (sentencia -> sent_try .)
+    FUNCION         reduce using rule 14 (sentencia -> sent_try .)
+    INTENTAR        reduce using rule 14 (sentencia -> sent_try .)
+    $end            reduce using rule 14 (sentencia -> sent_try .)
+    C_LLAVE         reduce using rule 14 (sentencia -> sent_try .)
+    REGRESAR        reduce using rule 14 (sentencia -> sent_try .)
+
+
+state 15
+
+    (15) declarar_var -> VAR . IDENTIFICADORES
+    (16) declarar_var -> VAR . IDENTIFICADORES OP_ASIGNACION valor
+
+    IDENTIFICADORES shift and go to state 27
+
+
+state 16
+
+    (46) asignacion -> IDENTIFICADORES . OP_ASIGNACION valor
+    (48) inst_fun -> IDENTIFICADORES . A_PARENTESIS atributo C_PARENTESIS
+
+    OP_ASIGNACION   shift and go to state 28
+    A_PARENTESIS    shift and go to state 29
+
+
+state 17
+
+    (47) declarar_cons -> CONS . IDENTIFICADORES OP_ASIGNACION LITERALES
+
+    IDENTIFICADORES shift and go to state 30
+
+
+state 18
+
+    (55) metodo -> PUNTO . METODO A_PARENTESIS atributo C_PARENTESIS
+
+    METODO          shift and go to state 31
+
+
+state 19
+
+    (56) metodo -> METODO . A_PARENTESIS atributo C_PARENTESIS
+
+    A_PARENTESIS    shift and go to state 32
+
+
+state 20
+
+    (57) sent_if -> SI . A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+
+    A_PARENTESIS    shift and go to state 33
+
+
+state 21
+
+    (64) sent_for -> PARA . A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+
+    A_PARENTESIS    shift and go to state 34
+
+
+state 22
+
+    (70) sent_while -> MIENTRAS . A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+
+    A_PARENTESIS    shift and go to state 35
+
+
+state 23
+
+    (71) sent_fun -> FUNCION . A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> FUNCION . A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+
+    A_PARENTESIS    shift and go to state 36
+
+
+state 24
+
+    (73) sent_try -> INTENTAR . A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    A_LLAVE         shift and go to state 37
+
+
+state 25
+
+    (2) sentencia_sent -> sent_linea P_COMA . sentencia_sent
+    (2) sentencia_sent -> . sent_linea P_COMA sentencia_sent
+    (3) sentencia_sent -> . sentencia sentencia_sent
+    (4) sentencia_sent -> .
+    (5) sent_linea -> . declarar_var
+    (6) sent_linea -> . declarar_cons
+    (7) sent_linea -> . asignacion
+    (8) sent_linea -> . inst_fun
+    (9) sent_linea -> . metodo
+    (10) sentencia -> . sent_if
+    (11) sentencia -> . sent_for
+    (12) sentencia -> . sent_while
+    (13) sentencia -> . sent_fun
+    (14) sentencia -> . sent_try
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+    (47) declarar_cons -> . CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+    (46) asignacion -> . IDENTIFICADORES OP_ASIGNACION valor
+    (48) inst_fun -> . IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (57) sent_if -> . SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (64) sent_for -> . PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (70) sent_while -> . MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (71) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (73) sent_try -> . INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    $end            reduce using rule 4 (sentencia_sent -> .)
+    C_LLAVE         reduce using rule 4 (sentencia_sent -> .)
+    REGRESAR        reduce using rule 4 (sentencia_sent -> .)
+    VAR             shift and go to state 15
+    CONS            shift and go to state 17
+    IDENTIFICADORES shift and go to state 16
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    SI              shift and go to state 20
+    PARA            shift and go to state 21
+    MIENTRAS        shift and go to state 22
+    FUNCION         shift and go to state 23
+    INTENTAR        shift and go to state 24
+
+    sent_linea                     shift and go to state 3
+    sentencia_sent                 shift and go to state 38
+    sentencia                      shift and go to state 4
+    declarar_var                   shift and go to state 5
+    declarar_cons                  shift and go to state 6
+    asignacion                     shift and go to state 7
+    inst_fun                       shift and go to state 8
+    metodo                         shift and go to state 9
+    sent_if                        shift and go to state 10
+    sent_for                       shift and go to state 11
+    sent_while                     shift and go to state 12
+    sent_fun                       shift and go to state 13
+    sent_try                       shift and go to state 14
+
+state 26
+
+    (3) sentencia_sent -> sentencia sentencia_sent .
+
+    $end            reduce using rule 3 (sentencia_sent -> sentencia sentencia_sent .)
+    C_LLAVE         reduce using rule 3 (sentencia_sent -> sentencia sentencia_sent .)
+    REGRESAR        reduce using rule 3 (sentencia_sent -> sentencia sentencia_sent .)
+
+
+state 27
+
+    (15) declarar_var -> VAR IDENTIFICADORES .
+    (16) declarar_var -> VAR IDENTIFICADORES . OP_ASIGNACION valor
+
+    P_COMA          reduce using rule 15 (declarar_var -> VAR IDENTIFICADORES .)
+    OP_ASIGNACION   shift and go to state 39
+
+
+state 28
+
+    (46) asignacion -> IDENTIFICADORES OP_ASIGNACION . valor
+    (17) valor -> . expresion
+    (18) valor -> . estructura_datos
+    (19) valor -> . metodo
+    (20) valor -> . IDENTIFICADORES
+    (21) expresion -> . termino exp_e
+    (31) estructura_datos -> . lista
+    (32) estructura_datos -> . tupla
+    (33) estructura_datos -> . diccionario
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (22) termino -> . factor term_ext
+    (34) lista -> . A_CORCHETE dato dato_extra C_CORCHETE
+    (35) lista -> . A_CORCHETE C_CORCHETE
+    (36) tupla -> . A_PARENTESIS dato dato_extra C_PARENTESIS
+    (39) diccionario -> . A_LLAVE LITERALES DOS_P dato element_ext C_LLAVE
+    (40) diccionario -> . A_LLAVE C_LLAVE
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    IDENTIFICADORES shift and go to state 40
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    A_CORCHETE      shift and go to state 51
+    A_PARENTESIS    shift and go to state 49
+    A_LLAVE         shift and go to state 52
+    LITERALES       shift and go to state 53
+
+    valor                          shift and go to state 41
+    expresion                      shift and go to state 42
+    estructura_datos               shift and go to state 43
+    metodo                         shift and go to state 44
+    termino                        shift and go to state 45
+    lista                          shift and go to state 46
+    tupla                          shift and go to state 47
+    diccionario                    shift and go to state 48
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 29
+
+    (48) inst_fun -> IDENTIFICADORES A_PARENTESIS . atributo C_PARENTESIS
+    (49) atributo -> . IDENTIFICADORES atributo_dos
+    (50) atributo -> . LITERALES atributo_dos
+    (51) atributo -> .
+
+    IDENTIFICADORES shift and go to state 55
+    LITERALES       shift and go to state 57
+    C_PARENTESIS    reduce using rule 51 (atributo -> .)
+
+    atributo                       shift and go to state 56
+
+state 30
+
+    (47) declarar_cons -> CONS IDENTIFICADORES . OP_ASIGNACION LITERALES
+
+    OP_ASIGNACION   shift and go to state 58
+
+
+state 31
+
+    (55) metodo -> PUNTO METODO . A_PARENTESIS atributo C_PARENTESIS
+
+    A_PARENTESIS    shift and go to state 59
+
+
+state 32
+
+    (56) metodo -> METODO A_PARENTESIS . atributo C_PARENTESIS
+    (49) atributo -> . IDENTIFICADORES atributo_dos
+    (50) atributo -> . LITERALES atributo_dos
+    (51) atributo -> .
+
+    IDENTIFICADORES shift and go to state 55
+    LITERALES       shift and go to state 57
+    C_PARENTESIS    reduce using rule 51 (atributo -> .)
+
+    atributo                       shift and go to state 60
+
+state 33
+
+    (57) sent_if -> SI A_PARENTESIS . exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (58) exp_comparacion -> . dato OP_RELACIONAL dato exp_ext
+    (59) exp_comparacion -> . LITERALES
+    (43) dato -> . IDENTIFICADORES
+    (44) dato -> . LITERALES
+    (45) dato -> . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    LITERALES       shift and go to state 64
+    IDENTIFICADORES shift and go to state 65
+    A_PARENTESIS    shift and go to state 61
+
+    exp_comparacion                shift and go to state 62
+    dato                           shift and go to state 63
+    expresion                      shift and go to state 66
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 34
+
+    (64) sent_for -> PARA A_PARENTESIS . declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+
+    VAR             shift and go to state 15
+
+    declarar_var                   shift and go to state 67
+
+state 35
+
+    (70) sent_while -> MIENTRAS A_PARENTESIS . exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (58) exp_comparacion -> . dato OP_RELACIONAL dato exp_ext
+    (59) exp_comparacion -> . LITERALES
+    (43) dato -> . IDENTIFICADORES
+    (44) dato -> . LITERALES
+    (45) dato -> . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    LITERALES       shift and go to state 64
+    IDENTIFICADORES shift and go to state 65
+    A_PARENTESIS    shift and go to state 61
+
+    exp_comparacion                shift and go to state 68
+    dato                           shift and go to state 63
+    expresion                      shift and go to state 66
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 36
+
+    (71) sent_fun -> FUNCION A_PARENTESIS . atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> FUNCION A_PARENTESIS . atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (49) atributo -> . IDENTIFICADORES atributo_dos
+    (50) atributo -> . LITERALES atributo_dos
+    (51) atributo -> .
+
+    IDENTIFICADORES shift and go to state 55
+    LITERALES       shift and go to state 57
+    C_PARENTESIS    reduce using rule 51 (atributo -> .)
+
+    atributo                       shift and go to state 69
+
+state 37
+
+    (73) sent_try -> INTENTAR A_LLAVE . sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+    (2) sentencia_sent -> . sent_linea P_COMA sentencia_sent
+    (3) sentencia_sent -> . sentencia sentencia_sent
+    (4) sentencia_sent -> .
+    (5) sent_linea -> . declarar_var
+    (6) sent_linea -> . declarar_cons
+    (7) sent_linea -> . asignacion
+    (8) sent_linea -> . inst_fun
+    (9) sent_linea -> . metodo
+    (10) sentencia -> . sent_if
+    (11) sentencia -> . sent_for
+    (12) sentencia -> . sent_while
+    (13) sentencia -> . sent_fun
+    (14) sentencia -> . sent_try
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+    (47) declarar_cons -> . CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+    (46) asignacion -> . IDENTIFICADORES OP_ASIGNACION valor
+    (48) inst_fun -> . IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (57) sent_if -> . SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (64) sent_for -> . PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (70) sent_while -> . MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (71) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (73) sent_try -> . INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    C_LLAVE         reduce using rule 4 (sentencia_sent -> .)
+    VAR             shift and go to state 15
+    CONS            shift and go to state 17
+    IDENTIFICADORES shift and go to state 16
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    SI              shift and go to state 20
+    PARA            shift and go to state 21
+    MIENTRAS        shift and go to state 22
+    FUNCION         shift and go to state 23
+    INTENTAR        shift and go to state 24
+
+    sentencia_sent                 shift and go to state 70
+    sent_linea                     shift and go to state 3
+    sentencia                      shift and go to state 4
+    declarar_var                   shift and go to state 5
+    declarar_cons                  shift and go to state 6
+    asignacion                     shift and go to state 7
+    inst_fun                       shift and go to state 8
+    metodo                         shift and go to state 9
+    sent_if                        shift and go to state 10
+    sent_for                       shift and go to state 11
+    sent_while                     shift and go to state 12
+    sent_fun                       shift and go to state 13
+    sent_try                       shift and go to state 14
+
+state 38
+
+    (2) sentencia_sent -> sent_linea P_COMA sentencia_sent .
+
+    $end            reduce using rule 2 (sentencia_sent -> sent_linea P_COMA sentencia_sent .)
+    C_LLAVE         reduce using rule 2 (sentencia_sent -> sent_linea P_COMA sentencia_sent .)
+    REGRESAR        reduce using rule 2 (sentencia_sent -> sent_linea P_COMA sentencia_sent .)
+
+
+state 39
+
+    (16) declarar_var -> VAR IDENTIFICADORES OP_ASIGNACION . valor
+    (17) valor -> . expresion
+    (18) valor -> . estructura_datos
+    (19) valor -> . metodo
+    (20) valor -> . IDENTIFICADORES
+    (21) expresion -> . termino exp_e
+    (31) estructura_datos -> . lista
+    (32) estructura_datos -> . tupla
+    (33) estructura_datos -> . diccionario
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (22) termino -> . factor term_ext
+    (34) lista -> . A_CORCHETE dato dato_extra C_CORCHETE
+    (35) lista -> . A_CORCHETE C_CORCHETE
+    (36) tupla -> . A_PARENTESIS dato dato_extra C_PARENTESIS
+    (39) diccionario -> . A_LLAVE LITERALES DOS_P dato element_ext C_LLAVE
+    (40) diccionario -> . A_LLAVE C_LLAVE
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    IDENTIFICADORES shift and go to state 40
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    A_CORCHETE      shift and go to state 51
+    A_PARENTESIS    shift and go to state 49
+    A_LLAVE         shift and go to state 52
+    LITERALES       shift and go to state 53
+
+    valor                          shift and go to state 71
+    expresion                      shift and go to state 42
+    estructura_datos               shift and go to state 43
+    metodo                         shift and go to state 44
+    termino                        shift and go to state 45
+    lista                          shift and go to state 46
+    tupla                          shift and go to state 47
+    diccionario                    shift and go to state 48
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 40
+
+    (20) valor -> IDENTIFICADORES .
+    (25) selec_dato -> IDENTIFICADORES .
+
+  ! reduce/reduce conflict for P_COMA resolved using rule 20 (valor -> IDENTIFICADORES .)
+  ! reduce/reduce conflict for C_LLAVE resolved using rule 20 (valor -> IDENTIFICADORES .)
+    P_COMA          reduce using rule 20 (valor -> IDENTIFICADORES .)
+    C_LLAVE         reduce using rule 20 (valor -> IDENTIFICADORES .)
+    OP_MULTIPLICATIVO reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    OP_ARITMETICO   reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+
+  ! P_COMA          [ reduce using rule 25 (selec_dato -> IDENTIFICADORES .) ]
+  ! C_LLAVE         [ reduce using rule 25 (selec_dato -> IDENTIFICADORES .) ]
+
+
+state 41
+
+    (46) asignacion -> IDENTIFICADORES OP_ASIGNACION valor .
+
+    P_COMA          reduce using rule 46 (asignacion -> IDENTIFICADORES OP_ASIGNACION valor .)
+
+
+state 42
+
+    (17) valor -> expresion .
+
+    P_COMA          reduce using rule 17 (valor -> expresion .)
+    C_LLAVE         reduce using rule 17 (valor -> expresion .)
+
+
+state 43
+
+    (18) valor -> estructura_datos .
+
+    P_COMA          reduce using rule 18 (valor -> estructura_datos .)
+    C_LLAVE         reduce using rule 18 (valor -> estructura_datos .)
+
+
+state 44
+
+    (19) valor -> metodo .
+
+    P_COMA          reduce using rule 19 (valor -> metodo .)
+    C_LLAVE         reduce using rule 19 (valor -> metodo .)
+
+
+state 45
+
+    (21) expresion -> termino . exp_e
+    (29) exp_e -> . OP_ARITMETICO termino exp_e
+    (30) exp_e -> .
+
+    OP_ARITMETICO   shift and go to state 73
+    P_COMA          reduce using rule 30 (exp_e -> .)
+    OP_RELACIONAL   reduce using rule 30 (exp_e -> .)
+    C_PARENTESIS    reduce using rule 30 (exp_e -> .)
+    COMA            reduce using rule 30 (exp_e -> .)
+    C_CORCHETE      reduce using rule 30 (exp_e -> .)
+    OP_LOGICO       reduce using rule 30 (exp_e -> .)
+    C_LLAVE         reduce using rule 30 (exp_e -> .)
+
+    exp_e                          shift and go to state 72
+
+state 46
+
+    (31) estructura_datos -> lista .
+
+    P_COMA          reduce using rule 31 (estructura_datos -> lista .)
+    C_LLAVE         reduce using rule 31 (estructura_datos -> lista .)
+
+
+state 47
+
+    (32) estructura_datos -> tupla .
+
+    P_COMA          reduce using rule 32 (estructura_datos -> tupla .)
+    C_LLAVE         reduce using rule 32 (estructura_datos -> tupla .)
+
+
+state 48
+
+    (33) estructura_datos -> diccionario .
+
+    P_COMA          reduce using rule 33 (estructura_datos -> diccionario .)
+    C_LLAVE         reduce using rule 33 (estructura_datos -> diccionario .)
+
+
+state 49
+
+    (36) tupla -> A_PARENTESIS . dato dato_extra C_PARENTESIS
+    (24) factor -> A_PARENTESIS . expresion C_PARENTESIS
+    (43) dato -> . IDENTIFICADORES
+    (44) dato -> . LITERALES
+    (45) dato -> . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    IDENTIFICADORES shift and go to state 65
+    LITERALES       shift and go to state 76
+    A_PARENTESIS    shift and go to state 61
+
+    dato                           shift and go to state 74
+    expresion                      shift and go to state 75
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 50
+
+    (22) termino -> factor . term_ext
+    (27) term_ext -> . OP_MULTIPLICATIVO factor term_ext
+    (28) term_ext -> .
+
+    OP_MULTIPLICATIVO shift and go to state 78
+    OP_ARITMETICO   reduce using rule 28 (term_ext -> .)
+    P_COMA          reduce using rule 28 (term_ext -> .)
+    OP_RELACIONAL   reduce using rule 28 (term_ext -> .)
+    C_PARENTESIS    reduce using rule 28 (term_ext -> .)
+    COMA            reduce using rule 28 (term_ext -> .)
+    C_CORCHETE      reduce using rule 28 (term_ext -> .)
+    OP_LOGICO       reduce using rule 28 (term_ext -> .)
+    C_LLAVE         reduce using rule 28 (term_ext -> .)
+
+    term_ext                       shift and go to state 77
+
+state 51
+
+    (34) lista -> A_CORCHETE . dato dato_extra C_CORCHETE
+    (35) lista -> A_CORCHETE . C_CORCHETE
+    (43) dato -> . IDENTIFICADORES
+    (44) dato -> . LITERALES
+    (45) dato -> . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    C_CORCHETE      shift and go to state 80
+    IDENTIFICADORES shift and go to state 65
+    LITERALES       shift and go to state 76
+    A_PARENTESIS    shift and go to state 61
+
+    dato                           shift and go to state 79
+    expresion                      shift and go to state 66
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 52
+
+    (39) diccionario -> A_LLAVE . LITERALES DOS_P dato element_ext C_LLAVE
+    (40) diccionario -> A_LLAVE . C_LLAVE
+
+    LITERALES       shift and go to state 81
+    C_LLAVE         shift and go to state 82
+
+
+state 53
+
+    (26) selec_dato -> LITERALES .
+
+    OP_MULTIPLICATIVO reduce using rule 26 (selec_dato -> LITERALES .)
+    OP_ARITMETICO   reduce using rule 26 (selec_dato -> LITERALES .)
+    P_COMA          reduce using rule 26 (selec_dato -> LITERALES .)
+    C_PARENTESIS    reduce using rule 26 (selec_dato -> LITERALES .)
+    OP_RELACIONAL   reduce using rule 26 (selec_dato -> LITERALES .)
+    COMA            reduce using rule 26 (selec_dato -> LITERALES .)
+    C_CORCHETE      reduce using rule 26 (selec_dato -> LITERALES .)
+    OP_LOGICO       reduce using rule 26 (selec_dato -> LITERALES .)
+    C_LLAVE         reduce using rule 26 (selec_dato -> LITERALES .)
+
+
+state 54
+
+    (23) factor -> selec_dato .
+
+    OP_MULTIPLICATIVO reduce using rule 23 (factor -> selec_dato .)
+    OP_ARITMETICO   reduce using rule 23 (factor -> selec_dato .)
+    P_COMA          reduce using rule 23 (factor -> selec_dato .)
+    OP_RELACIONAL   reduce using rule 23 (factor -> selec_dato .)
+    C_PARENTESIS    reduce using rule 23 (factor -> selec_dato .)
+    COMA            reduce using rule 23 (factor -> selec_dato .)
+    C_CORCHETE      reduce using rule 23 (factor -> selec_dato .)
+    OP_LOGICO       reduce using rule 23 (factor -> selec_dato .)
+    C_LLAVE         reduce using rule 23 (factor -> selec_dato .)
+
+
+state 55
+
+    (49) atributo -> IDENTIFICADORES . atributo_dos
+    (52) atributo_dos -> . COMA IDENTIFICADORES atributo_dos
+    (53) atributo_dos -> . COMA LITERALES atributo_dos
+    (54) atributo_dos -> .
+
+    COMA            shift and go to state 84
+    C_PARENTESIS    reduce using rule 54 (atributo_dos -> .)
+
+    atributo_dos                   shift and go to state 83
+
+state 56
+
+    (48) inst_fun -> IDENTIFICADORES A_PARENTESIS atributo . C_PARENTESIS
+
+    C_PARENTESIS    shift and go to state 85
+
+
+state 57
+
+    (50) atributo -> LITERALES . atributo_dos
+    (52) atributo_dos -> . COMA IDENTIFICADORES atributo_dos
+    (53) atributo_dos -> . COMA LITERALES atributo_dos
+    (54) atributo_dos -> .
+
+    COMA            shift and go to state 84
+    C_PARENTESIS    reduce using rule 54 (atributo_dos -> .)
+
+    atributo_dos                   shift and go to state 86
+
+state 58
+
+    (47) declarar_cons -> CONS IDENTIFICADORES OP_ASIGNACION . LITERALES
+
+    LITERALES       shift and go to state 87
+
+
+state 59
+
+    (55) metodo -> PUNTO METODO A_PARENTESIS . atributo C_PARENTESIS
+    (49) atributo -> . IDENTIFICADORES atributo_dos
+    (50) atributo -> . LITERALES atributo_dos
+    (51) atributo -> .
+
+    IDENTIFICADORES shift and go to state 55
+    LITERALES       shift and go to state 57
+    C_PARENTESIS    reduce using rule 51 (atributo -> .)
+
+    atributo                       shift and go to state 88
+
+state 60
+
+    (56) metodo -> METODO A_PARENTESIS atributo . C_PARENTESIS
+
+    C_PARENTESIS    shift and go to state 89
+
+
+state 61
+
+    (24) factor -> A_PARENTESIS . expresion C_PARENTESIS
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    A_PARENTESIS    shift and go to state 61
+    IDENTIFICADORES shift and go to state 91
+    LITERALES       shift and go to state 53
+
+    expresion                      shift and go to state 90
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 62
+
+    (57) sent_if -> SI A_PARENTESIS exp_comparacion . C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+
+    C_PARENTESIS    shift and go to state 92
+
+
+state 63
+
+    (58) exp_comparacion -> dato . OP_RELACIONAL dato exp_ext
+
+    OP_RELACIONAL   shift and go to state 93
+
+
+state 64
+
+    (59) exp_comparacion -> LITERALES .
+    (44) dato -> LITERALES .
+    (26) selec_dato -> LITERALES .
+
+  ! reduce/reduce conflict for OP_RELACIONAL resolved using rule 26 (selec_dato -> LITERALES .)
+    C_PARENTESIS    reduce using rule 59 (exp_comparacion -> LITERALES .)
+    OP_MULTIPLICATIVO reduce using rule 26 (selec_dato -> LITERALES .)
+    OP_ARITMETICO   reduce using rule 26 (selec_dato -> LITERALES .)
+    OP_RELACIONAL   reduce using rule 26 (selec_dato -> LITERALES .)
+
+  ! OP_RELACIONAL   [ reduce using rule 44 (dato -> LITERALES .) ]
+
+
+state 65
+
+    (43) dato -> IDENTIFICADORES .
+    (25) selec_dato -> IDENTIFICADORES .
+
+  ! reduce/reduce conflict for OP_RELACIONAL resolved using rule 25 (selec_dato -> IDENTIFICADORES .)
+  ! reduce/reduce conflict for C_PARENTESIS resolved using rule 25 (selec_dato -> IDENTIFICADORES .)
+  ! reduce/reduce conflict for COMA resolved using rule 25 (selec_dato -> IDENTIFICADORES .)
+  ! reduce/reduce conflict for C_CORCHETE resolved using rule 25 (selec_dato -> IDENTIFICADORES .)
+  ! reduce/reduce conflict for OP_LOGICO resolved using rule 25 (selec_dato -> IDENTIFICADORES .)
+  ! reduce/reduce conflict for C_LLAVE resolved using rule 25 (selec_dato -> IDENTIFICADORES .)
+  ! reduce/reduce conflict for P_COMA resolved using rule 25 (selec_dato -> IDENTIFICADORES .)
+    OP_MULTIPLICATIVO reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    OP_ARITMETICO   reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    OP_RELACIONAL   reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    C_PARENTESIS    reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    COMA            reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    C_CORCHETE      reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    OP_LOGICO       reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    C_LLAVE         reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    P_COMA          reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+
+  ! OP_RELACIONAL   [ reduce using rule 43 (dato -> IDENTIFICADORES .) ]
+  ! COMA            [ reduce using rule 43 (dato -> IDENTIFICADORES .) ]
+  ! C_PARENTESIS    [ reduce using rule 43 (dato -> IDENTIFICADORES .) ]
+  ! C_CORCHETE      [ reduce using rule 43 (dato -> IDENTIFICADORES .) ]
+  ! OP_LOGICO       [ reduce using rule 43 (dato -> IDENTIFICADORES .) ]
+  ! C_LLAVE         [ reduce using rule 43 (dato -> IDENTIFICADORES .) ]
+  ! P_COMA          [ reduce using rule 43 (dato -> IDENTIFICADORES .) ]
+
+
+state 66
+
+    (45) dato -> expresion .
+
+    OP_RELACIONAL   reduce using rule 45 (dato -> expresion .)
+    COMA            reduce using rule 45 (dato -> expresion .)
+    C_CORCHETE      reduce using rule 45 (dato -> expresion .)
+    OP_LOGICO       reduce using rule 45 (dato -> expresion .)
+    C_PARENTESIS    reduce using rule 45 (dato -> expresion .)
+    C_LLAVE         reduce using rule 45 (dato -> expresion .)
+    P_COMA          reduce using rule 45 (dato -> expresion .)
+
+
+state 67
+
+    (64) sent_for -> PARA A_PARENTESIS declarar_var . P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+
+    P_COMA          shift and go to state 94
+
+
+state 68
+
+    (70) sent_while -> MIENTRAS A_PARENTESIS exp_comparacion . C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+
+    C_PARENTESIS    shift and go to state 95
+
+
+state 69
+
+    (71) sent_fun -> FUNCION A_PARENTESIS atributo . C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> FUNCION A_PARENTESIS atributo . C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+
+    C_PARENTESIS    shift and go to state 96
+
+
+state 70
+
+    (73) sent_try -> INTENTAR A_LLAVE sentencia_sent . C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    C_LLAVE         shift and go to state 97
+
+
+state 71
+
+    (16) declarar_var -> VAR IDENTIFICADORES OP_ASIGNACION valor .
+
+    P_COMA          reduce using rule 16 (declarar_var -> VAR IDENTIFICADORES OP_ASIGNACION valor .)
+
+
+state 72
+
+    (21) expresion -> termino exp_e .
+
+    P_COMA          reduce using rule 21 (expresion -> termino exp_e .)
+    OP_RELACIONAL   reduce using rule 21 (expresion -> termino exp_e .)
+    C_PARENTESIS    reduce using rule 21 (expresion -> termino exp_e .)
+    COMA            reduce using rule 21 (expresion -> termino exp_e .)
+    C_CORCHETE      reduce using rule 21 (expresion -> termino exp_e .)
+    OP_LOGICO       reduce using rule 21 (expresion -> termino exp_e .)
+    C_LLAVE         reduce using rule 21 (expresion -> termino exp_e .)
+
+
+state 73
+
+    (29) exp_e -> OP_ARITMETICO . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    A_PARENTESIS    shift and go to state 61
+    IDENTIFICADORES shift and go to state 91
+    LITERALES       shift and go to state 53
+
+    termino                        shift and go to state 98
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 74
+
+    (36) tupla -> A_PARENTESIS dato . dato_extra C_PARENTESIS
+    (37) dato_extra -> . COMA dato dato_extra
+    (38) dato_extra -> .
+
+    COMA            shift and go to state 100
+    C_PARENTESIS    reduce using rule 38 (dato_extra -> .)
+
+    dato_extra                     shift and go to state 99
+
+state 75
+
+    (24) factor -> A_PARENTESIS expresion . C_PARENTESIS
+    (45) dato -> expresion .
+
+  ! shift/reduce conflict for C_PARENTESIS resolved as shift
+    C_PARENTESIS    shift and go to state 101
+    COMA            reduce using rule 45 (dato -> expresion .)
+
+  ! C_PARENTESIS    [ reduce using rule 45 (dato -> expresion .) ]
+
+
+state 76
+
+    (44) dato -> LITERALES .
+    (26) selec_dato -> LITERALES .
+
+  ! reduce/reduce conflict for C_PARENTESIS resolved using rule 26 (selec_dato -> LITERALES .)
+  ! reduce/reduce conflict for COMA resolved using rule 26 (selec_dato -> LITERALES .)
+  ! reduce/reduce conflict for C_CORCHETE resolved using rule 26 (selec_dato -> LITERALES .)
+  ! reduce/reduce conflict for OP_LOGICO resolved using rule 26 (selec_dato -> LITERALES .)
+  ! reduce/reduce conflict for C_LLAVE resolved using rule 26 (selec_dato -> LITERALES .)
+  ! reduce/reduce conflict for P_COMA resolved using rule 26 (selec_dato -> LITERALES .)
+    OP_MULTIPLICATIVO reduce using rule 26 (selec_dato -> LITERALES .)
+    OP_ARITMETICO   reduce using rule 26 (selec_dato -> LITERALES .)
+    C_PARENTESIS    reduce using rule 26 (selec_dato -> LITERALES .)
+    COMA            reduce using rule 26 (selec_dato -> LITERALES .)
+    C_CORCHETE      reduce using rule 26 (selec_dato -> LITERALES .)
+    OP_LOGICO       reduce using rule 26 (selec_dato -> LITERALES .)
+    C_LLAVE         reduce using rule 26 (selec_dato -> LITERALES .)
+    P_COMA          reduce using rule 26 (selec_dato -> LITERALES .)
+
+  ! COMA            [ reduce using rule 44 (dato -> LITERALES .) ]
+  ! C_PARENTESIS    [ reduce using rule 44 (dato -> LITERALES .) ]
+  ! C_CORCHETE      [ reduce using rule 44 (dato -> LITERALES .) ]
+  ! OP_LOGICO       [ reduce using rule 44 (dato -> LITERALES .) ]
+  ! C_LLAVE         [ reduce using rule 44 (dato -> LITERALES .) ]
+  ! P_COMA          [ reduce using rule 44 (dato -> LITERALES .) ]
+
+
+state 77
+
+    (22) termino -> factor term_ext .
+
+    OP_ARITMETICO   reduce using rule 22 (termino -> factor term_ext .)
+    P_COMA          reduce using rule 22 (termino -> factor term_ext .)
+    OP_RELACIONAL   reduce using rule 22 (termino -> factor term_ext .)
+    C_PARENTESIS    reduce using rule 22 (termino -> factor term_ext .)
+    COMA            reduce using rule 22 (termino -> factor term_ext .)
+    C_CORCHETE      reduce using rule 22 (termino -> factor term_ext .)
+    OP_LOGICO       reduce using rule 22 (termino -> factor term_ext .)
+    C_LLAVE         reduce using rule 22 (termino -> factor term_ext .)
+
+
+state 78
+
+    (27) term_ext -> OP_MULTIPLICATIVO . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    A_PARENTESIS    shift and go to state 61
+    IDENTIFICADORES shift and go to state 91
+    LITERALES       shift and go to state 53
+
+    factor                         shift and go to state 102
+    selec_dato                     shift and go to state 54
+
+state 79
+
+    (34) lista -> A_CORCHETE dato . dato_extra C_CORCHETE
+    (37) dato_extra -> . COMA dato dato_extra
+    (38) dato_extra -> .
+
+    COMA            shift and go to state 100
+    C_CORCHETE      reduce using rule 38 (dato_extra -> .)
+
+    dato_extra                     shift and go to state 103
+
+state 80
+
+    (35) lista -> A_CORCHETE C_CORCHETE .
+
+    P_COMA          reduce using rule 35 (lista -> A_CORCHETE C_CORCHETE .)
+    C_LLAVE         reduce using rule 35 (lista -> A_CORCHETE C_CORCHETE .)
+
+
+state 81
+
+    (39) diccionario -> A_LLAVE LITERALES . DOS_P dato element_ext C_LLAVE
+
+    DOS_P           shift and go to state 104
+
+
+state 82
+
+    (40) diccionario -> A_LLAVE C_LLAVE .
+
+    P_COMA          reduce using rule 40 (diccionario -> A_LLAVE C_LLAVE .)
+    C_LLAVE         reduce using rule 40 (diccionario -> A_LLAVE C_LLAVE .)
+
+
+state 83
+
+    (49) atributo -> IDENTIFICADORES atributo_dos .
+
+    C_PARENTESIS    reduce using rule 49 (atributo -> IDENTIFICADORES atributo_dos .)
+
+
+state 84
+
+    (52) atributo_dos -> COMA . IDENTIFICADORES atributo_dos
+    (53) atributo_dos -> COMA . LITERALES atributo_dos
+
+    IDENTIFICADORES shift and go to state 105
+    LITERALES       shift and go to state 106
+
+
+state 85
+
+    (48) inst_fun -> IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS .
+
+    P_COMA          reduce using rule 48 (inst_fun -> IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS .)
+
+
+state 86
+
+    (50) atributo -> LITERALES atributo_dos .
+
+    C_PARENTESIS    reduce using rule 50 (atributo -> LITERALES atributo_dos .)
+
+
+state 87
+
+    (47) declarar_cons -> CONS IDENTIFICADORES OP_ASIGNACION LITERALES .
+
+    P_COMA          reduce using rule 47 (declarar_cons -> CONS IDENTIFICADORES OP_ASIGNACION LITERALES .)
+
+
+state 88
+
+    (55) metodo -> PUNTO METODO A_PARENTESIS atributo . C_PARENTESIS
+
+    C_PARENTESIS    shift and go to state 107
+
+
+state 89
+
+    (56) metodo -> METODO A_PARENTESIS atributo C_PARENTESIS .
+
+    P_COMA          reduce using rule 56 (metodo -> METODO A_PARENTESIS atributo C_PARENTESIS .)
+    C_LLAVE         reduce using rule 56 (metodo -> METODO A_PARENTESIS atributo C_PARENTESIS .)
+
+
+state 90
+
+    (24) factor -> A_PARENTESIS expresion . C_PARENTESIS
+
+    C_PARENTESIS    shift and go to state 101
+
+
+state 91
+
+    (25) selec_dato -> IDENTIFICADORES .
+
+    OP_MULTIPLICATIVO reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    OP_ARITMETICO   reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    C_PARENTESIS    reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    P_COMA          reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    OP_RELACIONAL   reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    COMA            reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    C_CORCHETE      reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    OP_LOGICO       reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+    C_LLAVE         reduce using rule 25 (selec_dato -> IDENTIFICADORES .)
+
+
+state 92
+
+    (57) sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS . A_LLAVE sentencia_sent C_LLAVE sent_else
+
+    A_LLAVE         shift and go to state 108
+
+
+state 93
+
+    (58) exp_comparacion -> dato OP_RELACIONAL . dato exp_ext
+    (43) dato -> . IDENTIFICADORES
+    (44) dato -> . LITERALES
+    (45) dato -> . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    IDENTIFICADORES shift and go to state 65
+    LITERALES       shift and go to state 76
+    A_PARENTESIS    shift and go to state 61
+
+    dato                           shift and go to state 109
+    expresion                      shift and go to state 66
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 94
+
+    (64) sent_for -> PARA A_PARENTESIS declarar_var P_COMA . expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (65) expresion_comp -> . IDENTIFICADORES OP_RELACIONAL dato
+
+    IDENTIFICADORES shift and go to state 111
+
+    expresion_comp                 shift and go to state 110
+
+state 95
+
+    (70) sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS . A_LLAVE sentencia_sent C_LLAVE
+
+    A_LLAVE         shift and go to state 112
+
+
+state 96
+
+    (71) sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS . A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS . A_LLAVE sentencia_sent C_LLAVE
+
+    A_LLAVE         shift and go to state 113
+
+
+state 97
+
+    (73) sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE . EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    EXCEPTO         shift and go to state 114
+
+
+state 98
+
+    (29) exp_e -> OP_ARITMETICO termino . exp_e
+    (29) exp_e -> . OP_ARITMETICO termino exp_e
+    (30) exp_e -> .
+
+    OP_ARITMETICO   shift and go to state 73
+    P_COMA          reduce using rule 30 (exp_e -> .)
+    OP_RELACIONAL   reduce using rule 30 (exp_e -> .)
+    C_PARENTESIS    reduce using rule 30 (exp_e -> .)
+    COMA            reduce using rule 30 (exp_e -> .)
+    C_CORCHETE      reduce using rule 30 (exp_e -> .)
+    OP_LOGICO       reduce using rule 30 (exp_e -> .)
+    C_LLAVE         reduce using rule 30 (exp_e -> .)
+
+    exp_e                          shift and go to state 115
+
+state 99
+
+    (36) tupla -> A_PARENTESIS dato dato_extra . C_PARENTESIS
+
+    C_PARENTESIS    shift and go to state 116
+
+
+state 100
+
+    (37) dato_extra -> COMA . dato dato_extra
+    (43) dato -> . IDENTIFICADORES
+    (44) dato -> . LITERALES
+    (45) dato -> . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    IDENTIFICADORES shift and go to state 65
+    LITERALES       shift and go to state 76
+    A_PARENTESIS    shift and go to state 61
+
+    dato                           shift and go to state 117
+    expresion                      shift and go to state 66
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 101
+
+    (24) factor -> A_PARENTESIS expresion C_PARENTESIS .
+
+    OP_MULTIPLICATIVO reduce using rule 24 (factor -> A_PARENTESIS expresion C_PARENTESIS .)
+    OP_ARITMETICO   reduce using rule 24 (factor -> A_PARENTESIS expresion C_PARENTESIS .)
+    P_COMA          reduce using rule 24 (factor -> A_PARENTESIS expresion C_PARENTESIS .)
+    OP_RELACIONAL   reduce using rule 24 (factor -> A_PARENTESIS expresion C_PARENTESIS .)
+    C_PARENTESIS    reduce using rule 24 (factor -> A_PARENTESIS expresion C_PARENTESIS .)
+    COMA            reduce using rule 24 (factor -> A_PARENTESIS expresion C_PARENTESIS .)
+    C_CORCHETE      reduce using rule 24 (factor -> A_PARENTESIS expresion C_PARENTESIS .)
+    OP_LOGICO       reduce using rule 24 (factor -> A_PARENTESIS expresion C_PARENTESIS .)
+    C_LLAVE         reduce using rule 24 (factor -> A_PARENTESIS expresion C_PARENTESIS .)
+
+
+state 102
+
+    (27) term_ext -> OP_MULTIPLICATIVO factor . term_ext
+    (27) term_ext -> . OP_MULTIPLICATIVO factor term_ext
+    (28) term_ext -> .
+
+    OP_MULTIPLICATIVO shift and go to state 78
+    OP_ARITMETICO   reduce using rule 28 (term_ext -> .)
+    P_COMA          reduce using rule 28 (term_ext -> .)
+    OP_RELACIONAL   reduce using rule 28 (term_ext -> .)
+    C_PARENTESIS    reduce using rule 28 (term_ext -> .)
+    COMA            reduce using rule 28 (term_ext -> .)
+    C_CORCHETE      reduce using rule 28 (term_ext -> .)
+    OP_LOGICO       reduce using rule 28 (term_ext -> .)
+    C_LLAVE         reduce using rule 28 (term_ext -> .)
+
+    term_ext                       shift and go to state 118
+
+state 103
+
+    (34) lista -> A_CORCHETE dato dato_extra . C_CORCHETE
+
+    C_CORCHETE      shift and go to state 119
+
+
+state 104
+
+    (39) diccionario -> A_LLAVE LITERALES DOS_P . dato element_ext C_LLAVE
+    (43) dato -> . IDENTIFICADORES
+    (44) dato -> . LITERALES
+    (45) dato -> . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    IDENTIFICADORES shift and go to state 65
+    LITERALES       shift and go to state 76
+    A_PARENTESIS    shift and go to state 61
+
+    dato                           shift and go to state 120
+    expresion                      shift and go to state 66
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 105
+
+    (52) atributo_dos -> COMA IDENTIFICADORES . atributo_dos
+    (52) atributo_dos -> . COMA IDENTIFICADORES atributo_dos
+    (53) atributo_dos -> . COMA LITERALES atributo_dos
+    (54) atributo_dos -> .
+
+    COMA            shift and go to state 84
+    C_PARENTESIS    reduce using rule 54 (atributo_dos -> .)
+
+    atributo_dos                   shift and go to state 121
+
+state 106
+
+    (53) atributo_dos -> COMA LITERALES . atributo_dos
+    (52) atributo_dos -> . COMA IDENTIFICADORES atributo_dos
+    (53) atributo_dos -> . COMA LITERALES atributo_dos
+    (54) atributo_dos -> .
+
+    COMA            shift and go to state 84
+    C_PARENTESIS    reduce using rule 54 (atributo_dos -> .)
+
+    atributo_dos                   shift and go to state 122
+
+state 107
+
+    (55) metodo -> PUNTO METODO A_PARENTESIS atributo C_PARENTESIS .
+
+    P_COMA          reduce using rule 55 (metodo -> PUNTO METODO A_PARENTESIS atributo C_PARENTESIS .)
+    C_LLAVE         reduce using rule 55 (metodo -> PUNTO METODO A_PARENTESIS atributo C_PARENTESIS .)
+
+
+state 108
+
+    (57) sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE . sentencia_sent C_LLAVE sent_else
+    (2) sentencia_sent -> . sent_linea P_COMA sentencia_sent
+    (3) sentencia_sent -> . sentencia sentencia_sent
+    (4) sentencia_sent -> .
+    (5) sent_linea -> . declarar_var
+    (6) sent_linea -> . declarar_cons
+    (7) sent_linea -> . asignacion
+    (8) sent_linea -> . inst_fun
+    (9) sent_linea -> . metodo
+    (10) sentencia -> . sent_if
+    (11) sentencia -> . sent_for
+    (12) sentencia -> . sent_while
+    (13) sentencia -> . sent_fun
+    (14) sentencia -> . sent_try
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+    (47) declarar_cons -> . CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+    (46) asignacion -> . IDENTIFICADORES OP_ASIGNACION valor
+    (48) inst_fun -> . IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (57) sent_if -> . SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (64) sent_for -> . PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (70) sent_while -> . MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (71) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (73) sent_try -> . INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    C_LLAVE         reduce using rule 4 (sentencia_sent -> .)
+    VAR             shift and go to state 15
+    CONS            shift and go to state 17
+    IDENTIFICADORES shift and go to state 16
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    SI              shift and go to state 20
+    PARA            shift and go to state 21
+    MIENTRAS        shift and go to state 22
+    FUNCION         shift and go to state 23
+    INTENTAR        shift and go to state 24
+
+    sentencia_sent                 shift and go to state 123
+    sent_linea                     shift and go to state 3
+    sentencia                      shift and go to state 4
+    declarar_var                   shift and go to state 5
+    declarar_cons                  shift and go to state 6
+    asignacion                     shift and go to state 7
+    inst_fun                       shift and go to state 8
+    metodo                         shift and go to state 9
+    sent_if                        shift and go to state 10
+    sent_for                       shift and go to state 11
+    sent_while                     shift and go to state 12
+    sent_fun                       shift and go to state 13
+    sent_try                       shift and go to state 14
+
+state 109
+
+    (58) exp_comparacion -> dato OP_RELACIONAL dato . exp_ext
+    (60) exp_ext -> . OP_LOGICO exp_comparacion
+    (61) exp_ext -> .
+
+    OP_LOGICO       shift and go to state 125
+    C_PARENTESIS    reduce using rule 61 (exp_ext -> .)
+
+    exp_ext                        shift and go to state 124
+
+state 110
+
+    (64) sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp . P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+
+    P_COMA          shift and go to state 126
+
+
+state 111
+
+    (65) expresion_comp -> IDENTIFICADORES . OP_RELACIONAL dato
+
+    OP_RELACIONAL   shift and go to state 127
+
+
+state 112
+
+    (70) sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE . sentencia_sent C_LLAVE
+    (2) sentencia_sent -> . sent_linea P_COMA sentencia_sent
+    (3) sentencia_sent -> . sentencia sentencia_sent
+    (4) sentencia_sent -> .
+    (5) sent_linea -> . declarar_var
+    (6) sent_linea -> . declarar_cons
+    (7) sent_linea -> . asignacion
+    (8) sent_linea -> . inst_fun
+    (9) sent_linea -> . metodo
+    (10) sentencia -> . sent_if
+    (11) sentencia -> . sent_for
+    (12) sentencia -> . sent_while
+    (13) sentencia -> . sent_fun
+    (14) sentencia -> . sent_try
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+    (47) declarar_cons -> . CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+    (46) asignacion -> . IDENTIFICADORES OP_ASIGNACION valor
+    (48) inst_fun -> . IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (57) sent_if -> . SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (64) sent_for -> . PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (70) sent_while -> . MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (71) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (73) sent_try -> . INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    C_LLAVE         reduce using rule 4 (sentencia_sent -> .)
+    VAR             shift and go to state 15
+    CONS            shift and go to state 17
+    IDENTIFICADORES shift and go to state 16
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    SI              shift and go to state 20
+    PARA            shift and go to state 21
+    MIENTRAS        shift and go to state 22
+    FUNCION         shift and go to state 23
+    INTENTAR        shift and go to state 24
+
+    sentencia_sent                 shift and go to state 128
+    sent_linea                     shift and go to state 3
+    sentencia                      shift and go to state 4
+    declarar_var                   shift and go to state 5
+    declarar_cons                  shift and go to state 6
+    asignacion                     shift and go to state 7
+    inst_fun                       shift and go to state 8
+    metodo                         shift and go to state 9
+    sent_if                        shift and go to state 10
+    sent_for                       shift and go to state 11
+    sent_while                     shift and go to state 12
+    sent_fun                       shift and go to state 13
+    sent_try                       shift and go to state 14
+
+state 113
+
+    (71) sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE . sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE . sentencia_sent C_LLAVE
+    (2) sentencia_sent -> . sent_linea P_COMA sentencia_sent
+    (3) sentencia_sent -> . sentencia sentencia_sent
+    (4) sentencia_sent -> .
+    (5) sent_linea -> . declarar_var
+    (6) sent_linea -> . declarar_cons
+    (7) sent_linea -> . asignacion
+    (8) sent_linea -> . inst_fun
+    (9) sent_linea -> . metodo
+    (10) sentencia -> . sent_if
+    (11) sentencia -> . sent_for
+    (12) sentencia -> . sent_while
+    (13) sentencia -> . sent_fun
+    (14) sentencia -> . sent_try
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+    (47) declarar_cons -> . CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+    (46) asignacion -> . IDENTIFICADORES OP_ASIGNACION valor
+    (48) inst_fun -> . IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (57) sent_if -> . SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (64) sent_for -> . PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (70) sent_while -> . MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (71) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (73) sent_try -> . INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    REGRESAR        reduce using rule 4 (sentencia_sent -> .)
+    C_LLAVE         reduce using rule 4 (sentencia_sent -> .)
+    VAR             shift and go to state 15
+    CONS            shift and go to state 17
+    IDENTIFICADORES shift and go to state 16
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    SI              shift and go to state 20
+    PARA            shift and go to state 21
+    MIENTRAS        shift and go to state 22
+    FUNCION         shift and go to state 23
+    INTENTAR        shift and go to state 24
+
+    sentencia_sent                 shift and go to state 129
+    sent_linea                     shift and go to state 3
+    sentencia                      shift and go to state 4
+    declarar_var                   shift and go to state 5
+    declarar_cons                  shift and go to state 6
+    asignacion                     shift and go to state 7
+    inst_fun                       shift and go to state 8
+    metodo                         shift and go to state 9
+    sent_if                        shift and go to state 10
+    sent_for                       shift and go to state 11
+    sent_while                     shift and go to state 12
+    sent_fun                       shift and go to state 13
+    sent_try                       shift and go to state 14
+
+state 114
+
+    (73) sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO . A_LLAVE sentencia_sent C_LLAVE
+
+    A_LLAVE         shift and go to state 130
+
+
+state 115
+
+    (29) exp_e -> OP_ARITMETICO termino exp_e .
+
+    P_COMA          reduce using rule 29 (exp_e -> OP_ARITMETICO termino exp_e .)
+    OP_RELACIONAL   reduce using rule 29 (exp_e -> OP_ARITMETICO termino exp_e .)
+    C_PARENTESIS    reduce using rule 29 (exp_e -> OP_ARITMETICO termino exp_e .)
+    COMA            reduce using rule 29 (exp_e -> OP_ARITMETICO termino exp_e .)
+    C_CORCHETE      reduce using rule 29 (exp_e -> OP_ARITMETICO termino exp_e .)
+    OP_LOGICO       reduce using rule 29 (exp_e -> OP_ARITMETICO termino exp_e .)
+    C_LLAVE         reduce using rule 29 (exp_e -> OP_ARITMETICO termino exp_e .)
+
+
+state 116
+
+    (36) tupla -> A_PARENTESIS dato dato_extra C_PARENTESIS .
+
+    P_COMA          reduce using rule 36 (tupla -> A_PARENTESIS dato dato_extra C_PARENTESIS .)
+    C_LLAVE         reduce using rule 36 (tupla -> A_PARENTESIS dato dato_extra C_PARENTESIS .)
+
+
+state 117
+
+    (37) dato_extra -> COMA dato . dato_extra
+    (37) dato_extra -> . COMA dato dato_extra
+    (38) dato_extra -> .
+
+    COMA            shift and go to state 100
+    C_PARENTESIS    reduce using rule 38 (dato_extra -> .)
+    C_CORCHETE      reduce using rule 38 (dato_extra -> .)
+
+    dato_extra                     shift and go to state 131
+
+state 118
+
+    (27) term_ext -> OP_MULTIPLICATIVO factor term_ext .
+
+    OP_ARITMETICO   reduce using rule 27 (term_ext -> OP_MULTIPLICATIVO factor term_ext .)
+    P_COMA          reduce using rule 27 (term_ext -> OP_MULTIPLICATIVO factor term_ext .)
+    OP_RELACIONAL   reduce using rule 27 (term_ext -> OP_MULTIPLICATIVO factor term_ext .)
+    C_PARENTESIS    reduce using rule 27 (term_ext -> OP_MULTIPLICATIVO factor term_ext .)
+    COMA            reduce using rule 27 (term_ext -> OP_MULTIPLICATIVO factor term_ext .)
+    C_CORCHETE      reduce using rule 27 (term_ext -> OP_MULTIPLICATIVO factor term_ext .)
+    OP_LOGICO       reduce using rule 27 (term_ext -> OP_MULTIPLICATIVO factor term_ext .)
+    C_LLAVE         reduce using rule 27 (term_ext -> OP_MULTIPLICATIVO factor term_ext .)
+
+
+state 119
+
+    (34) lista -> A_CORCHETE dato dato_extra C_CORCHETE .
+
+    P_COMA          reduce using rule 34 (lista -> A_CORCHETE dato dato_extra C_CORCHETE .)
+    C_LLAVE         reduce using rule 34 (lista -> A_CORCHETE dato dato_extra C_CORCHETE .)
+
+
+state 120
+
+    (39) diccionario -> A_LLAVE LITERALES DOS_P dato . element_ext C_LLAVE
+    (41) element_ext -> . COMA LITERALES DOS_P dato element_ext
+    (42) element_ext -> .
+
+    COMA            shift and go to state 133
+    C_LLAVE         reduce using rule 42 (element_ext -> .)
+
+    element_ext                    shift and go to state 132
+
+state 121
+
+    (52) atributo_dos -> COMA IDENTIFICADORES atributo_dos .
+
+    C_PARENTESIS    reduce using rule 52 (atributo_dos -> COMA IDENTIFICADORES atributo_dos .)
+
+
+state 122
+
+    (53) atributo_dos -> COMA LITERALES atributo_dos .
+
+    C_PARENTESIS    reduce using rule 53 (atributo_dos -> COMA LITERALES atributo_dos .)
+
+
+state 123
+
+    (57) sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent . C_LLAVE sent_else
+
+    C_LLAVE         shift and go to state 134
+
+
+state 124
+
+    (58) exp_comparacion -> dato OP_RELACIONAL dato exp_ext .
+
+    C_PARENTESIS    reduce using rule 58 (exp_comparacion -> dato OP_RELACIONAL dato exp_ext .)
+
+
+state 125
+
+    (60) exp_ext -> OP_LOGICO . exp_comparacion
+    (58) exp_comparacion -> . dato OP_RELACIONAL dato exp_ext
+    (59) exp_comparacion -> . LITERALES
+    (43) dato -> . IDENTIFICADORES
+    (44) dato -> . LITERALES
+    (45) dato -> . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    LITERALES       shift and go to state 64
+    IDENTIFICADORES shift and go to state 65
+    A_PARENTESIS    shift and go to state 61
+
+    exp_comparacion                shift and go to state 135
+    dato                           shift and go to state 63
+    expresion                      shift and go to state 66
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 126
+
+    (64) sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA . incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (66) incremento -> . op_incremento_simple
+    (67) incremento -> . asignacion_expr
+    (68) op_incremento_simple -> . IDENTIFICADORES OP_UNITARIO
+    (69) asignacion_expr -> . IDENTIFICADORES OP_ASIGNACION expresion
+
+    IDENTIFICADORES shift and go to state 139
+
+    incremento                     shift and go to state 136
+    op_incremento_simple           shift and go to state 137
+    asignacion_expr                shift and go to state 138
+
+state 127
+
+    (65) expresion_comp -> IDENTIFICADORES OP_RELACIONAL . dato
+    (43) dato -> . IDENTIFICADORES
+    (44) dato -> . LITERALES
+    (45) dato -> . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    IDENTIFICADORES shift and go to state 65
+    LITERALES       shift and go to state 76
+    A_PARENTESIS    shift and go to state 61
+
+    dato                           shift and go to state 140
+    expresion                      shift and go to state 66
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 128
+
+    (70) sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent . C_LLAVE
+
+    C_LLAVE         shift and go to state 141
+
+
+state 129
+
+    (71) sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent . REGRESAR valor C_LLAVE
+    (72) sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent . C_LLAVE
+
+    REGRESAR        shift and go to state 142
+    C_LLAVE         shift and go to state 143
+
+
+state 130
+
+    (73) sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE . sentencia_sent C_LLAVE
+    (2) sentencia_sent -> . sent_linea P_COMA sentencia_sent
+    (3) sentencia_sent -> . sentencia sentencia_sent
+    (4) sentencia_sent -> .
+    (5) sent_linea -> . declarar_var
+    (6) sent_linea -> . declarar_cons
+    (7) sent_linea -> . asignacion
+    (8) sent_linea -> . inst_fun
+    (9) sent_linea -> . metodo
+    (10) sentencia -> . sent_if
+    (11) sentencia -> . sent_for
+    (12) sentencia -> . sent_while
+    (13) sentencia -> . sent_fun
+    (14) sentencia -> . sent_try
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+    (47) declarar_cons -> . CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+    (46) asignacion -> . IDENTIFICADORES OP_ASIGNACION valor
+    (48) inst_fun -> . IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (57) sent_if -> . SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (64) sent_for -> . PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (70) sent_while -> . MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (71) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (73) sent_try -> . INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    C_LLAVE         reduce using rule 4 (sentencia_sent -> .)
+    VAR             shift and go to state 15
+    CONS            shift and go to state 17
+    IDENTIFICADORES shift and go to state 16
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    SI              shift and go to state 20
+    PARA            shift and go to state 21
+    MIENTRAS        shift and go to state 22
+    FUNCION         shift and go to state 23
+    INTENTAR        shift and go to state 24
+
+    sentencia_sent                 shift and go to state 144
+    sent_linea                     shift and go to state 3
+    sentencia                      shift and go to state 4
+    declarar_var                   shift and go to state 5
+    declarar_cons                  shift and go to state 6
+    asignacion                     shift and go to state 7
+    inst_fun                       shift and go to state 8
+    metodo                         shift and go to state 9
+    sent_if                        shift and go to state 10
+    sent_for                       shift and go to state 11
+    sent_while                     shift and go to state 12
+    sent_fun                       shift and go to state 13
+    sent_try                       shift and go to state 14
+
+state 131
+
+    (37) dato_extra -> COMA dato dato_extra .
+
+    C_PARENTESIS    reduce using rule 37 (dato_extra -> COMA dato dato_extra .)
+    C_CORCHETE      reduce using rule 37 (dato_extra -> COMA dato dato_extra .)
+
+
+state 132
+
+    (39) diccionario -> A_LLAVE LITERALES DOS_P dato element_ext . C_LLAVE
+
+    C_LLAVE         shift and go to state 145
+
+
+state 133
+
+    (41) element_ext -> COMA . LITERALES DOS_P dato element_ext
+
+    LITERALES       shift and go to state 146
+
+
+state 134
+
+    (57) sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE . sent_else
+    (62) sent_else -> . ENTONCES A_LLAVE sentencia_sent C_LLAVE
+    (63) sent_else -> .
+
+    ENTONCES        shift and go to state 148
+    VAR             reduce using rule 63 (sent_else -> .)
+    CONS            reduce using rule 63 (sent_else -> .)
+    IDENTIFICADORES reduce using rule 63 (sent_else -> .)
+    PUNTO           reduce using rule 63 (sent_else -> .)
+    METODO          reduce using rule 63 (sent_else -> .)
+    SI              reduce using rule 63 (sent_else -> .)
+    PARA            reduce using rule 63 (sent_else -> .)
+    MIENTRAS        reduce using rule 63 (sent_else -> .)
+    FUNCION         reduce using rule 63 (sent_else -> .)
+    INTENTAR        reduce using rule 63 (sent_else -> .)
+    $end            reduce using rule 63 (sent_else -> .)
+    C_LLAVE         reduce using rule 63 (sent_else -> .)
+    REGRESAR        reduce using rule 63 (sent_else -> .)
+
+    sent_else                      shift and go to state 147
+
+state 135
+
+    (60) exp_ext -> OP_LOGICO exp_comparacion .
+
+    C_PARENTESIS    reduce using rule 60 (exp_ext -> OP_LOGICO exp_comparacion .)
+
+
+state 136
+
+    (64) sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento . C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+
+    C_PARENTESIS    shift and go to state 149
+
+
+state 137
+
+    (66) incremento -> op_incremento_simple .
+
+    C_PARENTESIS    reduce using rule 66 (incremento -> op_incremento_simple .)
+
+
+state 138
+
+    (67) incremento -> asignacion_expr .
+
+    C_PARENTESIS    reduce using rule 67 (incremento -> asignacion_expr .)
+
+
+state 139
+
+    (68) op_incremento_simple -> IDENTIFICADORES . OP_UNITARIO
+    (69) asignacion_expr -> IDENTIFICADORES . OP_ASIGNACION expresion
+
+    OP_UNITARIO     shift and go to state 150
+    OP_ASIGNACION   shift and go to state 151
+
+
+state 140
+
+    (65) expresion_comp -> IDENTIFICADORES OP_RELACIONAL dato .
+
+    P_COMA          reduce using rule 65 (expresion_comp -> IDENTIFICADORES OP_RELACIONAL dato .)
+
+
+state 141
+
+    (70) sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .
+
+    VAR             reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    CONS            reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    IDENTIFICADORES reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    PUNTO           reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    METODO          reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    SI              reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    PARA            reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    MIENTRAS        reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    FUNCION         reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    INTENTAR        reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    $end            reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    C_LLAVE         reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    REGRESAR        reduce using rule 70 (sent_while -> MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+
+
+state 142
+
+    (71) sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR . valor C_LLAVE
+    (17) valor -> . expresion
+    (18) valor -> . estructura_datos
+    (19) valor -> . metodo
+    (20) valor -> . IDENTIFICADORES
+    (21) expresion -> . termino exp_e
+    (31) estructura_datos -> . lista
+    (32) estructura_datos -> . tupla
+    (33) estructura_datos -> . diccionario
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (22) termino -> . factor term_ext
+    (34) lista -> . A_CORCHETE dato dato_extra C_CORCHETE
+    (35) lista -> . A_CORCHETE C_CORCHETE
+    (36) tupla -> . A_PARENTESIS dato dato_extra C_PARENTESIS
+    (39) diccionario -> . A_LLAVE LITERALES DOS_P dato element_ext C_LLAVE
+    (40) diccionario -> . A_LLAVE C_LLAVE
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    IDENTIFICADORES shift and go to state 40
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    A_CORCHETE      shift and go to state 51
+    A_PARENTESIS    shift and go to state 49
+    A_LLAVE         shift and go to state 52
+    LITERALES       shift and go to state 53
+
+    valor                          shift and go to state 152
+    expresion                      shift and go to state 42
+    estructura_datos               shift and go to state 43
+    metodo                         shift and go to state 44
+    termino                        shift and go to state 45
+    lista                          shift and go to state 46
+    tupla                          shift and go to state 47
+    diccionario                    shift and go to state 48
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 143
+
+    (72) sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .
+
+    VAR             reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    CONS            reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    IDENTIFICADORES reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    PUNTO           reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    METODO          reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    SI              reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    PARA            reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    MIENTRAS        reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    FUNCION         reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    INTENTAR        reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    $end            reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    C_LLAVE         reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    REGRESAR        reduce using rule 72 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+
+
+state 144
+
+    (73) sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent . C_LLAVE
+
+    C_LLAVE         shift and go to state 153
+
+
+state 145
+
+    (39) diccionario -> A_LLAVE LITERALES DOS_P dato element_ext C_LLAVE .
+
+    P_COMA          reduce using rule 39 (diccionario -> A_LLAVE LITERALES DOS_P dato element_ext C_LLAVE .)
+    C_LLAVE         reduce using rule 39 (diccionario -> A_LLAVE LITERALES DOS_P dato element_ext C_LLAVE .)
+
+
+state 146
+
+    (41) element_ext -> COMA LITERALES . DOS_P dato element_ext
+
+    DOS_P           shift and go to state 154
+
+
+state 147
+
+    (57) sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .
+
+    VAR             reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    CONS            reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    IDENTIFICADORES reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    PUNTO           reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    METODO          reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    SI              reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    PARA            reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    MIENTRAS        reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    FUNCION         reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    INTENTAR        reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    $end            reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    C_LLAVE         reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+    REGRESAR        reduce using rule 57 (sent_if -> SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else .)
+
+
+state 148
+
+    (62) sent_else -> ENTONCES . A_LLAVE sentencia_sent C_LLAVE
+
+    A_LLAVE         shift and go to state 155
+
+
+state 149
+
+    (64) sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS . A_LLAVE sentencia_sent C_LLAVE
+
+    A_LLAVE         shift and go to state 156
+
+
+state 150
+
+    (68) op_incremento_simple -> IDENTIFICADORES OP_UNITARIO .
+
+    C_PARENTESIS    reduce using rule 68 (op_incremento_simple -> IDENTIFICADORES OP_UNITARIO .)
+
+
+state 151
+
+    (69) asignacion_expr -> IDENTIFICADORES OP_ASIGNACION . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    A_PARENTESIS    shift and go to state 61
+    IDENTIFICADORES shift and go to state 91
+    LITERALES       shift and go to state 53
+
+    expresion                      shift and go to state 157
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 152
+
+    (71) sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor . C_LLAVE
+
+    C_LLAVE         shift and go to state 158
+
+
+state 153
+
+    (73) sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .
+
+    VAR             reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    CONS            reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    IDENTIFICADORES reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    PUNTO           reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    METODO          reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    SI              reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    PARA            reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    MIENTRAS        reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    FUNCION         reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    INTENTAR        reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    $end            reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    C_LLAVE         reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+    REGRESAR        reduce using rule 73 (sent_try -> INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE .)
+
+
+state 154
+
+    (41) element_ext -> COMA LITERALES DOS_P . dato element_ext
+    (43) dato -> . IDENTIFICADORES
+    (44) dato -> . LITERALES
+    (45) dato -> . expresion
+    (21) expresion -> . termino exp_e
+    (22) termino -> . factor term_ext
+    (23) factor -> . selec_dato
+    (24) factor -> . A_PARENTESIS expresion C_PARENTESIS
+    (25) selec_dato -> . IDENTIFICADORES
+    (26) selec_dato -> . LITERALES
+
+    IDENTIFICADORES shift and go to state 65
+    LITERALES       shift and go to state 76
+    A_PARENTESIS    shift and go to state 61
+
+    dato                           shift and go to state 159
+    expresion                      shift and go to state 66
+    termino                        shift and go to state 45
+    factor                         shift and go to state 50
+    selec_dato                     shift and go to state 54
+
+state 155
+
+    (62) sent_else -> ENTONCES A_LLAVE . sentencia_sent C_LLAVE
+    (2) sentencia_sent -> . sent_linea P_COMA sentencia_sent
+    (3) sentencia_sent -> . sentencia sentencia_sent
+    (4) sentencia_sent -> .
+    (5) sent_linea -> . declarar_var
+    (6) sent_linea -> . declarar_cons
+    (7) sent_linea -> . asignacion
+    (8) sent_linea -> . inst_fun
+    (9) sent_linea -> . metodo
+    (10) sentencia -> . sent_if
+    (11) sentencia -> . sent_for
+    (12) sentencia -> . sent_while
+    (13) sentencia -> . sent_fun
+    (14) sentencia -> . sent_try
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+    (47) declarar_cons -> . CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+    (46) asignacion -> . IDENTIFICADORES OP_ASIGNACION valor
+    (48) inst_fun -> . IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (57) sent_if -> . SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (64) sent_for -> . PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (70) sent_while -> . MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (71) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (73) sent_try -> . INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    C_LLAVE         reduce using rule 4 (sentencia_sent -> .)
+    VAR             shift and go to state 15
+    CONS            shift and go to state 17
+    IDENTIFICADORES shift and go to state 16
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    SI              shift and go to state 20
+    PARA            shift and go to state 21
+    MIENTRAS        shift and go to state 22
+    FUNCION         shift and go to state 23
+    INTENTAR        shift and go to state 24
+
+    sentencia_sent                 shift and go to state 160
+    sent_linea                     shift and go to state 3
+    sentencia                      shift and go to state 4
+    declarar_var                   shift and go to state 5
+    declarar_cons                  shift and go to state 6
+    asignacion                     shift and go to state 7
+    inst_fun                       shift and go to state 8
+    metodo                         shift and go to state 9
+    sent_if                        shift and go to state 10
+    sent_for                       shift and go to state 11
+    sent_while                     shift and go to state 12
+    sent_fun                       shift and go to state 13
+    sent_try                       shift and go to state 14
+
+state 156
+
+    (64) sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE . sentencia_sent C_LLAVE
+    (2) sentencia_sent -> . sent_linea P_COMA sentencia_sent
+    (3) sentencia_sent -> . sentencia sentencia_sent
+    (4) sentencia_sent -> .
+    (5) sent_linea -> . declarar_var
+    (6) sent_linea -> . declarar_cons
+    (7) sent_linea -> . asignacion
+    (8) sent_linea -> . inst_fun
+    (9) sent_linea -> . metodo
+    (10) sentencia -> . sent_if
+    (11) sentencia -> . sent_for
+    (12) sentencia -> . sent_while
+    (13) sentencia -> . sent_fun
+    (14) sentencia -> . sent_try
+    (15) declarar_var -> . VAR IDENTIFICADORES
+    (16) declarar_var -> . VAR IDENTIFICADORES OP_ASIGNACION valor
+    (47) declarar_cons -> . CONS IDENTIFICADORES OP_ASIGNACION LITERALES
+    (46) asignacion -> . IDENTIFICADORES OP_ASIGNACION valor
+    (48) inst_fun -> . IDENTIFICADORES A_PARENTESIS atributo C_PARENTESIS
+    (55) metodo -> . PUNTO METODO A_PARENTESIS atributo C_PARENTESIS
+    (56) metodo -> . METODO A_PARENTESIS atributo C_PARENTESIS
+    (57) sent_if -> . SI A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE sent_else
+    (64) sent_for -> . PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (70) sent_while -> . MIENTRAS A_PARENTESIS exp_comparacion C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (71) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE
+    (72) sent_fun -> . FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE
+    (73) sent_try -> . INTENTAR A_LLAVE sentencia_sent C_LLAVE EXCEPTO A_LLAVE sentencia_sent C_LLAVE
+
+    C_LLAVE         reduce using rule 4 (sentencia_sent -> .)
+    VAR             shift and go to state 15
+    CONS            shift and go to state 17
+    IDENTIFICADORES shift and go to state 16
+    PUNTO           shift and go to state 18
+    METODO          shift and go to state 19
+    SI              shift and go to state 20
+    PARA            shift and go to state 21
+    MIENTRAS        shift and go to state 22
+    FUNCION         shift and go to state 23
+    INTENTAR        shift and go to state 24
+
+    declarar_var                   shift and go to state 5
+    sentencia_sent                 shift and go to state 161
+    sent_linea                     shift and go to state 3
+    sentencia                      shift and go to state 4
+    declarar_cons                  shift and go to state 6
+    asignacion                     shift and go to state 7
+    inst_fun                       shift and go to state 8
+    metodo                         shift and go to state 9
+    sent_if                        shift and go to state 10
+    sent_for                       shift and go to state 11
+    sent_while                     shift and go to state 12
+    sent_fun                       shift and go to state 13
+    sent_try                       shift and go to state 14
+
+state 157
+
+    (69) asignacion_expr -> IDENTIFICADORES OP_ASIGNACION expresion .
+
+    C_PARENTESIS    reduce using rule 69 (asignacion_expr -> IDENTIFICADORES OP_ASIGNACION expresion .)
+
+
+state 158
+
+    (71) sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .
+
+    VAR             reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    CONS            reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    IDENTIFICADORES reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    PUNTO           reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    METODO          reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    SI              reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    PARA            reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    MIENTRAS        reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    FUNCION         reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    INTENTAR        reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    $end            reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    C_LLAVE         reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+    REGRESAR        reduce using rule 71 (sent_fun -> FUNCION A_PARENTESIS atributo C_PARENTESIS A_LLAVE sentencia_sent REGRESAR valor C_LLAVE .)
+
+
+state 159
+
+    (41) element_ext -> COMA LITERALES DOS_P dato . element_ext
+    (41) element_ext -> . COMA LITERALES DOS_P dato element_ext
+    (42) element_ext -> .
+
+    COMA            shift and go to state 133
+    C_LLAVE         reduce using rule 42 (element_ext -> .)
+
+    element_ext                    shift and go to state 162
+
+state 160
+
+    (62) sent_else -> ENTONCES A_LLAVE sentencia_sent . C_LLAVE
+
+    C_LLAVE         shift and go to state 163
+
+
+state 161
+
+    (64) sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent . C_LLAVE
+
+    C_LLAVE         shift and go to state 164
+
+
+state 162
+
+    (41) element_ext -> COMA LITERALES DOS_P dato element_ext .
+
+    C_LLAVE         reduce using rule 41 (element_ext -> COMA LITERALES DOS_P dato element_ext .)
+
+
+state 163
+
+    (62) sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .
+
+    VAR             reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    CONS            reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    IDENTIFICADORES reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    PUNTO           reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    METODO          reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    SI              reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    PARA            reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    MIENTRAS        reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    FUNCION         reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    INTENTAR        reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    $end            reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    C_LLAVE         reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+    REGRESAR        reduce using rule 62 (sent_else -> ENTONCES A_LLAVE sentencia_sent C_LLAVE .)
+
+
+state 164
+
+    (64) sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .
+
+    VAR             reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    CONS            reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    IDENTIFICADORES reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    PUNTO           reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    METODO          reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    SI              reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    PARA            reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    MIENTRAS        reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    FUNCION         reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    INTENTAR        reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    $end            reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    C_LLAVE         reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+    REGRESAR        reduce using rule 64 (sent_for -> PARA A_PARENTESIS declarar_var P_COMA expresion_comp P_COMA incremento C_PARENTESIS A_LLAVE sentencia_sent C_LLAVE .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for C_PARENTESIS in state 75 resolved as shift
+WARNING: reduce/reduce conflict in state 40 resolved using rule (valor -> IDENTIFICADORES)
+WARNING: rejected rule (selec_dato -> IDENTIFICADORES) in state 40
+WARNING: reduce/reduce conflict in state 64 resolved using rule (selec_dato -> LITERALES)
+WARNING: rejected rule (dato -> LITERALES) in state 64
+WARNING: reduce/reduce conflict in state 65 resolved using rule (selec_dato -> IDENTIFICADORES)
+WARNING: rejected rule (dato -> IDENTIFICADORES) in state 65
+WARNING: reduce/reduce conflict in state 76 resolved using rule (selec_dato -> LITERALES)
+WARNING: rejected rule (dato -> LITERALES) in state 76
+WARNING: Rule (dato -> LITERALES) is never reduced
+WARNING: Rule (dato -> IDENTIFICADORES) is never reduced
